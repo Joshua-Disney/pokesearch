@@ -1,9 +1,9 @@
 import './App.css';
 import { PokeSearch } from './components/PokeSearch';
 
-const galacticVariable = {
-  ultimateTruth: 'Meg Myers'
-}
+// const galacticVariable = {
+//   ultimateTruth: 'Meg Myers'
+// }
 
 function App() {
   return (

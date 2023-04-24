@@ -68,3 +68,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## TODO LIST 
+
+[x] display image of pokemon
+
+[x] select pokemon name from suggestion list on input
+
+[x] make input list dynamic to first letter
+
+[x] create an accordian div that shows the Pokemon's description
+
+[x] handle changes in the input after pokeInfo is initially loaded
+
+[x] make button visible only when call to pokeAPI has been made
