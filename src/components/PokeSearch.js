@@ -75,7 +75,7 @@ export const PokeSearch = () => {
             <h2>{pokeInfo.name ? pokeInfo.name : ''}</h2>
             {pokeInfo.name ? <p>Some moves {pokeInfo.name}s can learn are</p> : <></>}
             {pokeInfo.moves ? pokeMoves.map((move) => <p key={move}>{move}</p>) : <></>}
-            {pokeInfo.name ? <img id='pokeId' src={pokeImg} /> : <></>}
+            {pokeInfo.name ? <img alt='' id='pokeId' src={pokeImg} /> : <></>}
         </section>
         <section>
             {pokeInfo.name ? <button onClick={getFlavorText}>{pokeFlavorText.length === 0 ? `For more information about ${pokeInfo.name} click here!` : 'Learned enough?'}</button> : <></>}
