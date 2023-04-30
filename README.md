@@ -83,3 +83,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 [x] handle changes in the input after pokeInfo is initially loaded
 
 [x] make button visible only when call to pokeAPI has been made
+
+<!-- 04/2/2023 Rave Day -->
