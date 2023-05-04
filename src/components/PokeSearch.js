@@ -6,7 +6,7 @@ import { NamesDataList } from './namesDataList'
 
 export const PokeSearch = () => {
 
-    const state = {
+    let state = {
         pokeName: '',
         pokeInfo: {},
         pokeImg: '',
@@ -87,7 +87,11 @@ export const PokeSearch = () => {
                 placeholder='...type a Pokémon name' 
                 value={state.pokeName} 
                 list='pokeNames'
-                onChange={(e) => state.pokeName = e.target.value}
+                onChange={(event) => {
+                    console.log("attempt to type")
+                    console.log("pokeName: ", state.pokeName)
+                    state = {...state, pokeName: event.target.value}
+                }}
                 // onChange={(e) => setPokeName(e.target.value)} 
             />
             <NamesDataList name={state.pokeName}/>
