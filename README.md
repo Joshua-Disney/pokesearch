@@ -85,3 +85,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 [x] make button visible only when call to pokeAPI has been made
 
 <!-- 04/2/2023 Rave Day -->
+
+<!-- 05/05/2023 I have zero spoons.  I'm sorry. -->
