@@ -38,7 +38,7 @@ export class Refactor extends React.Component {
         this.state.pokeImg = myJson.sprites.front_default 
         // setPokeInfo(myJson)
         // setPokeImg(myJson.sprites.front_default)
-        const four = getFour(myJson.moves)
+        const four = this.getFour(myJson.moves)
         this.state.pokeMoves = four.map(num => myJson.moves[num].move.name)
         // setPokeMoves(four.map(num => myJson.moves[num].move.name))
         this.state.flavorToggle = false
@@ -73,7 +73,7 @@ export class Refactor extends React.Component {
                     e.preventDefault()
                     this.state.pokeFlavorText = ''
                     // setPokeFlavorText('')
-                    getPokemon(this.state.pokeName)}}>
+                    this.getPokemon(this.state.pokeName)}}>
                     <input 
                         type='text' 
                         name='pokeName' 
@@ -97,7 +97,7 @@ export class Refactor extends React.Component {
                     {this.state.pokeInfo.name ? <img alt='' id='pokeId' src={this.state.pokeImg} /> : <></>}
                 </section>
                 <section>
-                    {this.state.pokeInfo.name ? <button onClick={getFlavorText}>{this.state.pokeFlavorText.length === 0 ? `For more information about ${this.state.pokeInfo.name} click here!` : 'Learned enough?'}</button> : <></>}
+                    {this.state.pokeInfo.name ? <button onClick={this.getFlavorText}>{this.state.pokeFlavorText.length === 0 ? `For more information about ${this.state.pokeInfo.name} click here!` : 'Learned enough?'}</button> : <></>}
                     {this.state.flavorToggle ? <p>{this.state.pokeFlavorText.length > 0 ? this.state.pokeFlavorText : `Unfortunately, there isn't very much information about ${this.state.pokeInfo.name} yet`}</p> : <></>}
                 </section>
             </div>
