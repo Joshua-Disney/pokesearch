@@ -34,31 +34,31 @@ export class Refactor extends React.Component {
     async getPokemon(name) {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
         const myJson = await result.json()  
-        state.pokeInfo = myJson
-        state.pokeImg = myJson.sprites.front_default 
+        this.state.pokeInfo = myJson
+        this.state.pokeImg = myJson.sprites.front_default 
         // setPokeInfo(myJson)
         // setPokeImg(myJson.sprites.front_default)
         const four = getFour(myJson.moves)
-        state.pokeMoves = four.map(num => myJson.moves[num].move.name)
+        this.state.pokeMoves = four.map(num => myJson.moves[num].move.name)
         // setPokeMoves(four.map(num => myJson.moves[num].move.name))
-        state.flavorToggle = false
-        state.pokeFlavorText = ''
+        this.state.flavorToggle = false
+        this.state.pokeFlavorText = ''
         // setFlavorToggle(false)
         // setPokeFlavorText('')
     }
 
     async getFlavorText() {
-        if (state.pokeFlavorText.length > 1) {
-            state.pokeFlavorText = ''
-            state.flavorToggle = false
+        if (this.state.pokeFlavorText.length > 1) {
+            this.state.pokeFlavorText = ''
+            this.state.flavorToggle = false
             // setPokeFlavorText('')
             // setFlavorToggle(false)
             console.log('turning off')
         } else {
-            const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${state.pokeInfo.id}/`)
+            const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${this.state.pokeInfo.id}/`)
             const myJson = await result.json()
-            state.pokeFlavorText = myJson.flavor_text_entries[1].flavor_text
-            state.flavorToggle = true
+            this.state.pokeFlavorText = myJson.flavor_text_entries[1].flavor_text
+            this.state.flavorToggle = true
             // setPokeFlavorText(myJson.flavor_text_entries[1].flavor_text)
             // setFlavorToggle(true)
             console.log('turning on')
@@ -68,37 +68,37 @@ export class Refactor extends React.Component {
     render() {
         return(
             <div>
-                {state.pokeInfo.name ? <></> : <h1>Welcome to Poké Info</h1>}
+                {this.state.pokeInfo.name ? <></> : <h1>Welcome to Poké Info</h1>}
                 <form onSubmit={(e) => {
                     e.preventDefault()
-                    state.pokeFlavorText = ''
+                    this.state.pokeFlavorText = ''
                     // setPokeFlavorText('')
-                    getPokemon(state.pokeName)}}>
+                    getPokemon(this.state.pokeName)}}>
                     <input 
                         type='text' 
                         name='pokeName' 
                         id='pokeName'
                         placeholder='...type a Pokémon name' 
-                        value={state.pokeName} 
+                        value={this.state.pokeName} 
                         list='pokeNames'
                         onChange={(event) => {
                             console.log("attempt to type")
-                            console.log("pokeName: ", state.pokeName)
-                            state = {...state, pokeName: event.target.value}
+                            console.log("pokeName: ", this.state.pokeName)
+                            this.state = {...this.state, pokeName: event.target.value}
                         }}
                         // onChange={(e) => setPokeName(e.target.value)} 
                     />
-                    <NamesDataList name={state.pokeName}/>
+                    <NamesDataList name={this.state.pokeName}/>
                 </form>
                 <section>
-                    <h2>{state.pokeInfo.name ? state.pokeInfo.name : ''}</h2>
-                    {state.pokeInfo.name ? <p>Some moves {state.pokeInfo.name}s can learn are</p> : <></>}
-                    {state.pokeInfo.moves ? state.pokeMoves.map((move) => <p key={move}>{move}</p>) : <></>}
-                    {state.pokeInfo.name ? <img alt='' id='pokeId' src={state.pokeImg} /> : <></>}
+                    <h2>{this.state.pokeInfo.name ? this.state.pokeInfo.name : ''}</h2>
+                    {this.state.pokeInfo.name ? <p>Some moves {this.state.pokeInfo.name}s can learn are</p> : <></>}
+                    {this.state.pokeInfo.moves ? this.state.pokeMoves.map((move) => <p key={move}>{move}</p>) : <></>}
+                    {this.state.pokeInfo.name ? <img alt='' id='pokeId' src={this.state.pokeImg} /> : <></>}
                 </section>
                 <section>
-                    {state.pokeInfo.name ? <button onClick={getFlavorText}>{state.pokeFlavorText.length === 0 ? `For more information about ${state.pokeInfo.name} click here!` : 'Learned enough?'}</button> : <></>}
-                    {state.flavorToggle ? <p>{state.pokeFlavorText.length > 0 ? state.pokeFlavorText : `Unfortunately, there isn't very much information about ${state.pokeInfo.name} yet`}</p> : <></>}
+                    {this.state.pokeInfo.name ? <button onClick={getFlavorText}>{this.state.pokeFlavorText.length === 0 ? `For more information about ${this.state.pokeInfo.name} click here!` : 'Learned enough?'}</button> : <></>}
+                    {this.state.flavorToggle ? <p>{this.state.pokeFlavorText.length > 0 ? this.state.pokeFlavorText : `Unfortunately, there isn't very much information about ${this.state.pokeInfo.name} yet`}</p> : <></>}
                 </section>
             </div>
         )
