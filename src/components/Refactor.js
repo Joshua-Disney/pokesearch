@@ -34,7 +34,7 @@ export class Refactor extends React.Component {
     async getPokemon(name) {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
         const myJson = await result.json()  
-        this.state.pokeInfo = myJson
+        this.setState({...this.state, pokeInfo : myJson})
         this.state.pokeImg = myJson.sprites.front_default 
         // setPokeInfo(myJson)
         // setPokeImg(myJson.sprites.front_default)
@@ -84,7 +84,7 @@ export class Refactor extends React.Component {
                         onChange={(event) => {
                             console.log("attempt to type")
                             console.log("pokeName: ", this.state.pokeName)
-                            this.state = {...this.state, pokeName: event.target.value}
+                            this.setState({...this.state, pokeName: event.target.value})
                         }}
                         // onChange={(e) => setPokeName(e.target.value)} 
                     />
