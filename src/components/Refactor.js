@@ -34,33 +34,20 @@ export class Refactor extends React.Component {
     async getPokemon(name) {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
         const myJson = await result.json()  
-        this.setState({...this.state, pokeInfo : myJson})
-        this.state.pokeImg = myJson.sprites.front_default 
-        // setPokeInfo(myJson)
-        // setPokeImg(myJson.sprites.front_default)
+        this.setState({...this.state, pokeInfo : myJson, pokeImg : myJson.sprites.front_default})
+
         const four = this.getFour(myJson.moves)
-        this.state.pokeMoves = four.map(num => myJson.moves[num].move.name)
-        // setPokeMoves(four.map(num => myJson.moves[num].move.name))
-        this.state.flavorToggle = false
-        this.state.pokeFlavorText = ''
-        // setFlavorToggle(false)
-        // setPokeFlavorText('')
+        this.setState({...this.state, pokeMoves : four.map(num => myJson.moves[num].move.name), flavorToggle : false, pokeFlavorText : ''})
     }
 
     async getFlavorText() {
         if (this.state.pokeFlavorText.length > 1) {
-            this.state.pokeFlavorText = ''
-            this.state.flavorToggle = false
-            // setPokeFlavorText('')
-            // setFlavorToggle(false)
+            this.setState({...this.state, pokeFlavorText : '', flavorToggle : false})
             console.log('turning off')
         } else {
             const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${this.state.pokeInfo.id}/`)
             const myJson = await result.json()
-            this.state.pokeFlavorText = myJson.flavor_text_entries[1].flavor_text
-            this.state.flavorToggle = true
-            // setPokeFlavorText(myJson.flavor_text_entries[1].flavor_text)
-            // setFlavorToggle(true)
+            this.setState({...this.state, pokeFlavorText : myJson.flavor_text_entries[1].flavor_text, flavorToggle : true})
             console.log('turning on')
         }
     }
@@ -71,7 +58,7 @@ export class Refactor extends React.Component {
                 {this.state.pokeInfo.name ? <></> : <h1>Welcome to Poké Info</h1>}
                 <form onSubmit={(e) => {
                     e.preventDefault()
-                    this.state.pokeFlavorText = ''
+                    this.setState({...this.state, pokeFlavorText : ''})
                     // setPokeFlavorText('')
                     this.getPokemon(this.state.pokeName)}}>
                     <input 
@@ -86,7 +73,6 @@ export class Refactor extends React.Component {
                             console.log("pokeName: ", this.state.pokeName)
                             this.setState({...this.state, pokeName: event.target.value})
                         }}
-                        // onChange={(e) => setPokeName(e.target.value)} 
                     />
                     <NamesDataList name={this.state.pokeName}/>
                 </form>
