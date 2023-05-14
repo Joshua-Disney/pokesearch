@@ -41,20 +41,19 @@ export const PokeSearch = () => {
     }
 
     const getFlavorText = async () => {
-        if (pokeFlavorText.length > 1) {
-            setPokeFlavorText('')
-            setFlavorToggle(false)
-        } else {
-            const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeInfo.id}/`)
-            const myJson = await result.json()
-            console.log('pokeFlavorText 0: ', myJson)
-            if (myJson.flavor_text_entries[1].flavor_text) {
-                setPokeFlavorText(myJson.flavor_text_entries[1].flavor_text)
-                // console.log('pokeFlavorText 1: ', myJson.flavor_text_entries[1].flavor_text, myJson.flavor_text_entries[1].flavor_text.length)
+        try {
+            if (pokeFlavorText.length > 1) {
+                setPokeFlavorText('')
+                setFlavorToggle(false)
             } else {
-                setPokeFlavorText(`Unfortunately, there isn't very much information about ${pokeInfo.name} yet`)
-                console.log('pokeFlavorText 2: ', pokeFlavorText, pokeFlavorText.length)
+                const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeInfo.id}/`)
+                const myJson = await result.json()
+                setPokeFlavorText(myJson.flavor_text_entries[1].flavor_text)
             }
+            setFlavorToggle(true)
+            
+        } catch (error) {
+            setPokeFlavorText(`Unfortunately, there isn't very much information about ${pokeInfo.name} yet`)
             setFlavorToggle(true)
         }
     }
