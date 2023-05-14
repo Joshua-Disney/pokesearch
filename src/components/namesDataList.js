@@ -8,6 +8,8 @@ export const NamesDataList = (props) => {
             {PokeNames.map((name, ind) => {
                 if(name[0] === props.name[0]) {
                     return <option key={ind} value={name} />
+                } else {
+                    return <></>
                 }
             })}
         </datalist>
